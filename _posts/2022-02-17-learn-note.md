@@ -37,6 +37,14 @@
 1. 《数据库基本概念》
 2. 《数据密集型应用设计》(这本其实比较综合,暂时放在这里)
 
+#### 项目
+
+- Redis 3.0 源码及注释
+
+- Redis 源码
+
+- memcached
+
 ### 汇编语言
 
 1. 《王爽汇编语言》
@@ -50,12 +58,24 @@
 
 ### C++
 
+#### 书籍
+
 1. 《C++ Prime》
 2. 《Effective C++》 系列
 3. 《Effective modern C++》系列
 4. 《深度探索C++对象模型》
 5. 《C++沉思录》
 6. 《C++编程规范》
+7. [《CMake Cookbook》](https://www.bookstack.cn/read/CMake-Cookbook/README.md)
+
+#### 视频
+
+1. 这里还是很推荐 **侯捷老师** 的课程的
+2. [parallel101](https://github.com/parallel101)
+
+#### 项目
+
+
 
 ### Java
 
@@ -100,5 +120,21 @@
 1. 《大话数据结构》
 2. 《算法 4》
 
+### 网络编程
 
+#### 书籍
+
+- 《Unix 环境高级编程》（APUE）
+- 《Unix 编程：进程间通信》（UNP）
+- 《Unix 编程：套接字编程》（UNP）
+
+#### 项目
+
+- [libevent](https://github.com/libevent/libevent)
+
+- [lighttpd](https://github.com/lighttpd/lighttpd1.4)
+
+- [webbench](https://github.com/EZLippi/WebBench)
+
+- [muduo](https://github.com/chenshuo/muduo)
 
