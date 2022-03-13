@@ -84,41 +84,48 @@
 
 ### Go
 
-1. 《Go程序语言》
-2. 《The Way to Go》
-3. 《Effective Go》
-4. 《Go 语言实战》
+#### 书
+
+- 《Go程序语言》
+- 《The Way to Go》
+- 《Effective Go》
+- 《Go 语言实战》
+
+#### 博客
+
+- [煎鱼大神的博客](https://eddycjy.com/)
 
 ### Python
 
-1. 《Python 从入门到实践》
-2. 《流畅的Python》
+- 《Python 从入门到实践》
+- 《流畅的Python》
+- 《Python Cookbook》
 
 ### JavaScript
 
-1. 《JavaScript 核心概念》
-2. 《JavaScript 实战》
+- 《JavaScript 核心概念》
+- 《JavaScript 实战》
 
 ### HTML
 
-1. 《HTML 和 CSS》
+- 《HTML 和 CSS》
 
 ### CSS
 
-1. 《HTML 和 CSS》
+- 《HTML 和 CSS》
 
 ### Vue
 
-1. 《Vue 实战》
+- 《Vue 实战》
 
 ### 编译与链接
 
-1. 《程序员的自我修养》
+- 《程序员的自我修养》
 
 ### 数据结构与算法
 
-1. 《大话数据结构》
-2. 《算法 4》
+- 《大话数据结构》
+- 《算法 4》
 
 ### 网络编程
 
