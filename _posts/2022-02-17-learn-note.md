@@ -146,13 +146,3 @@
 - [muduo](https://github.com/chenshuo/muduo)
 
 
-### Machine Learning && Deep Learning
-
-#### 书
-
-- 《机器学习实战》
-
-#### 视频
-
-- [吴恩达-机器学习](https://www.bilibili.com/video/BV164411b7dx?p=3&spm_id_from=pageDriver)
-- [吴恩达-深度学习](https://www.bilibili.com/video/BV1FT4y1E74V?p=2)
