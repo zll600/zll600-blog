@@ -6,6 +6,7 @@
 
 #### 视频
 
+- course: https://www.coursera.org/learn/machine-learning#syllabus
 - [吴恩达-机器学习](https://www.bilibili.com/video/BV164411b7dx?p=3&spm_id_from=pageDriver)
 - [另一个版本](https://www.bilibili.com/video/BV1W34y1i7xK?p=12)
 
