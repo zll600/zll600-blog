@@ -41,3 +41,13 @@ func main() {
     fmt.Println("HelloWorld!")
 }
 ````
+
+## Reference
+
+### book
+
+- 《Go 程序设计语言》
+- 《Go 语言实战》
+- 《Go Web 编程》
+- 《The Way to Go》
+- 《Go 语言编程之旅》
