@@ -18,3 +18,7 @@
 ### DeepLearning
 
 - [吴恩达-深度学习](https://www.bilibili.com/video/BV1FT4y1E74V?p=2)
+
+## Math
+- https://www.youtube.com/watch?v=k0zKoTvngUY
+
