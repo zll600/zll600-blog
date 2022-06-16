@@ -14,3 +14,7 @@ ArchLinux 安装 docker
 
 ### 将当前用户添加到 docker 用户组中
 > sudo usermod -aG docker $USER
+
+### 更改镜像源
+
+参考 [USTC](https://lug.ustc.edu.cn/wiki/mirrors/help/docker/)
