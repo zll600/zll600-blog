@@ -1,3 +1,0 @@
-### Writting Everyday
-
-### Learn Everyday
