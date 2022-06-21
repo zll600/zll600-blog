@@ -102,4 +102,6 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://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@github.com/zll600/zll600.github.io.git
+  branch: gh-pages
