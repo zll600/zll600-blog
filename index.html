@@ -71,6 +71,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Upgrade-Debian10-to-Debian11" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/" class="article-date">
+  <time class="dt-published" datetime="2022-06-27T14:14:04.000Z" itemprop="datePublished">2022-06-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/">Upgrade Debian10 to Debian11</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简单记录一下从-debian-10-升级到-debian-11-的过程"><a href="#简单记录一下从-debian-10-升级到-debian-11-的过程" class="headerlink" title="简单记录一下从 debian 10 升级到 debian 11 的过程"></a>简单记录一下从 <code>debian 10</code> 升级到 <code>debian 11</code> 的过程</h2><blockquote>
+<p>以下操作均是切换到 root 身份下进行的</p>
+</blockquote>
+<h3 id="1-更新现有软件"><a href="#1-更新现有软件" class="headerlink" title="1. 更新现有软件"></a>1. 更新现有软件</h3><ul>
+<li>更新现有软件和安全补丁到最新版本<blockquote>
+<p>apt update &amp;&amp; apt upgrade -y</p>
+</blockquote>
+</li>
+<li>卸载不需要的依赖项<blockquote>
+<p>apt –purge autoremove</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-更新-source-list-文件"><a href="#2-更新-source-list-文件" class="headerlink" title="2. 更新 source.list 文件"></a>2. 更新 source.list 文件</h3><p>这里使用清华的镜像源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-升级到-Debian-11"><a href="#3-升级到-Debian-11" class="headerlink" title="3. 升级到 Debian 11"></a>3. 升级到 Debian 11</h3><blockquote>
+<p>apt update &amp;&amp; apt full-upgrade</p>
+</blockquote>
+<h5 id="可以参考这篇文章"><a href="#可以参考这篇文章" class="headerlink" title="可以参考这篇文章"></a>可以参考这篇<a target="_blank" rel="noopener" href="https://www.zatp.com/post/upgrade-to-debian-11/">文章</a></h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zll600.github.io/2022/06/27/Upgrade-Debian10-to-Debian11/" data-id="cl4wtq3nw0000t3j21ugjdzv7" data-title="Upgrade Debian10 to Debian11" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-fifth-blog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/zll600-blog/2022/06/23/fifth-blog/" class="article-date">
@@ -381,6 +438,10 @@
       <ul>
         
           <li>
+            <a href="/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/">Upgrade Debian10 to Debian11</a>
+          </li>
+        
+          <li>
             <a href="/zll600-blog/2022/06/23/fifth-blog/">fifth blog</a>
           </li>
         
@@ -394,10 +455,6 @@
         
           <li>
             <a href="/zll600-blog/2022/06/23/fourth-blog/">fourth blog</a>
-          </li>
-        
-          <li>
-            <a href="/zll600-blog/2022/06/22/third-blog/">third blog</a>
           </li>
         
       </ul>
