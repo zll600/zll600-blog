@@ -9,4 +9,8 @@ tags:
 ### 网络编程常遇到的问题
 ![](outline-question.png)
 
+
+just for test
+{% asset_img outline-question.png This is an image %}
+
 1. 经常将网络出路相关的逻辑和业务逻辑混合在一起，
