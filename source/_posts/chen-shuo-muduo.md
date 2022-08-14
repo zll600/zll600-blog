@@ -11,6 +11,6 @@ tags:
 
 
 just for test
-{% asset_img outline-question.png This is an image %}
+{% asset_img outline-questions.png chen-shuo-muduo %}
 
 1. 经常将网络出路相关的逻辑和业务逻辑混合在一起，
