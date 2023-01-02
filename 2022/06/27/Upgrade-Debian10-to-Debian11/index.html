@@ -1,38 +1,302 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zll600-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/zll600-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/zll600-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/zll600-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/zll600-blog/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zll600.github.io","root":"/zll600-blog/","images":"/zll600-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/zll600-blog/js/config.js"></script>
+
+    <meta name="description" content="简单记录一下从 debian 10 升级到 debian 11 的过程 以下操作均是切换到 root 身份下进行的  1. 更新现有软件 更新现有软件和安全补丁到最新版本 apt update &amp;&amp; apt upgrade -y   卸载不需要的依赖项 apt –purge autoremove    2. 更新 source.list 文件这里使用清华的镜像源 123456789">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Upgrade Debian10 to Debian11">
+<meta property="og:url" content="https://zll600.github.io/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/index.html">
+<meta property="og:site_name" content="zll600-blog">
+<meta property="og:description" content="简单记录一下从 debian 10 升级到 debian 11 的过程 以下操作均是切换到 root 身份下进行的  1. 更新现有软件 更新现有软件和安全补丁到最新版本 apt update &amp;&amp; apt upgrade -y   卸载不需要的依赖项 apt –purge autoremove    2. 更新 source.list 文件这里使用清华的镜像源 123456789">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-27T22:14:04.000Z">
+<meta property="article:modified_time" content="2023-01-02T02:31:33.827Z">
+<meta property="article:author" content="zll600">
+<meta name="twitter:card" content="summary">
 
 
-{% block content %}
+<link rel="canonical" href="https://zll600.github.io/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zll600.github.io/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/","path":"2022/06/27/Upgrade-Debian10-to-Debian11/","title":"Upgrade Debian10 to Debian11"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Upgrade Debian10 to Debian11 | zll600-blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/zll600-blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/zll600-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zll600-blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Record my thinking</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E4%BB%8E-debian-10-%E5%8D%87%E7%BA%A7%E5%88%B0-debian-11-%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">简单记录一下从 debian 10 升级到 debian 11 的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9B%B4%E6%96%B0%E7%8E%B0%E6%9C%89%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 更新现有软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9B%B4%E6%96%B0-source-list-%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">2. 更新 source.list 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8D%87%E7%BA%A7%E5%88%B0-Debian-11"><span class="nav-number">1.3.</span> <span class="nav-text">3. 升级到 Debian 11</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">可以参考这篇文章</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zll600</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/zll600-blog/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zll600.github.io/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/zll600-blog/images/avatar.gif">
+      <meta itemprop="name" content="zll600">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zll600-blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Upgrade Debian10 to Debian11 | zll600-blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Upgrade Debian10 to Debian11
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-06-27 22:14:04" itemprop="dateCreated datePublished" datetime="2022-06-27T22:14:04+00:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-01-02 02:31:33" itemprop="dateModified" datetime="2023-01-02T02:31:33+00:00">2023-01-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简单记录一下从-debian-10-升级到-debian-11-的过程"><a href="#简单记录一下从-debian-10-升级到-debian-11-的过程" class="headerlink" title="简单记录一下从 debian 10 升级到 debian 11 的过程"></a>简单记录一下从 <code>debian 10</code> 升级到 <code>debian 11</code> 的过程</h2><blockquote>
+<p>以下操作均是切换到 root 身份下进行的</p>
+</blockquote>
+<h3 id="1-更新现有软件"><a href="#1-更新现有软件" class="headerlink" title="1. 更新现有软件"></a>1. 更新现有软件</h3><ul>
+<li>更新现有软件和安全补丁到最新版本<blockquote>
+<p>apt update &amp;&amp; apt upgrade -y</p>
+</blockquote>
+</li>
+<li>卸载不需要的依赖项<blockquote>
+<p>apt –purge autoremove</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-更新-source-list-文件"><a href="#2-更新-source-list-文件" class="headerlink" title="2. 更新 source.list 文件"></a>2. 更新 source.list 文件</h3><p>这里使用清华的镜像源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-升级到-Debian-11"><a href="#3-升级到-Debian-11" class="headerlink" title="3. 升级到 Debian 11"></a>3. 升级到 Debian 11</h3><blockquote>
+<p>apt update &amp;&amp; apt full-upgrade</p>
+</blockquote>
+<h5 id="可以参考这篇文章"><a href="#可以参考这篇文章" class="headerlink" title="可以参考这篇文章"></a>可以参考这篇<a target="_blank" rel="noopener" href="https://www.zatp.com/post/upgrade-to-debian-11/">文章</a></h5>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/zll600-blog/2022/08/14/chen-shuo-muduo/" rel="next" title="chen-shuo-muduo">
+                  chen-shuo-muduo <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zll600</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/zll600-blog/js/comments.js"></script><script src="/zll600-blog/js/utils.js"></script><script src="/zll600-blog/js/motion.js"></script><script src="/zll600-blog/js/schemes/muse.js"></script><script src="/zll600-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
