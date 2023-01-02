@@ -504,11 +504,6 @@
   "resolved" "https://registry.npmjs.org/entities/-/entities-1.1.2.tgz"
   "version" "1.1.2"
 
-"entities@^1.1.2":
-  "integrity" "sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w=="
-  "resolved" "https://registry.npmjs.org/entities/-/entities-1.1.2.tgz"
-  "version" "1.1.2"
-
 "entities@^2.0.0":
   "integrity" "sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A=="
   "resolved" "https://registry.npmjs.org/entities/-/entities-2.2.0.tgz"
@@ -658,14 +653,6 @@
   dependencies:
     "function-bind" "^1.1.1"
 
-"hexo-asset-image@^1.0.0":
-  "integrity" "sha512-jkuUJNPRMH6v7HqzP2BAwEZavMzVxNWhl8jZl9BmFYB22/aq2+zixGIhV4vedI9cLPydjn9DfII41/MMXtzJTA=="
-  "resolved" "https://registry.npmjs.org/hexo-asset-image/-/hexo-asset-image-1.0.0.tgz"
-  "version" "1.0.0"
-  dependencies:
-    "cheerio" "^0.19.0"
-    "entities" "^1.1.2"
-
 "hexo-cli@^4.3.0":
   "integrity" "sha512-lr46h1tK1RNQJAQZbzKYAWGsmqF5DLrW6xKEakqv/o9JqgdeempBjIm7HqjcZEUBpWij4EO65X6YJiDmT9LR7g=="
   "resolved" "https://registry.npmjs.org/hexo-cli/-/hexo-cli-4.3.0.tgz"
@@ -684,7 +671,7 @@
 
 "hexo-deployer-git@^3.0.0":
   "integrity" "sha512-U2Xewjab+rvUDNTcuYYnOxitkDXL3f5VMUH32jKDHs3OC4YFVGRoEaTTDVHskqr3KRi78Wohjc6BSRHOoG3oxA=="
-  "resolved" "https://registry.npmjs.org/hexo-deployer-git/-/hexo-deployer-git-3.0.0.tgz"
+  "resolved" "https://registry.npmmirror.com/hexo-deployer-git/-/hexo-deployer-git-3.0.0.tgz"
   "version" "3.0.0"
   dependencies:
     "bluebird" "^3.5.0"
@@ -693,6 +680,14 @@
     "hexo-util" "^2.1.0"
     "moment" "^2.18.0"
     "nunjucks" "^3.2.1"
+
+"hexo-filter-image@^1.2.3":
+  "integrity" "sha512-7kJpCad9tK0V1i5xKQyhxZ8XpxnGLSqfQwRCStsOBYZZHCu/zLH+TYeD7YoiMGuiwgcPBNfA3LRyBTQgv7Scug=="
+  "resolved" "https://registry.npmmirror.com/hexo-filter-image/-/hexo-filter-image-1.2.3.tgz"
+  "version" "1.2.3"
+  dependencies:
+    "cheerio" "^0.19.0"
+    "lodash" "^4.17.11"
 
 "hexo-front-matter@^3.0.0":
   "integrity" "sha512-hSQTPUmB/BCe1BFYmXRkPyLk8rqbBqHCQq+rjwwOJuEfOADrFaVK2VPZb90tJzPyXE1xSxpgCxE/AZq0CyTVwg=="
@@ -747,6 +742,11 @@
   dependencies:
     "sprintf-js" "^1.0.3"
 
+"hexo-image-link@^0.0.5":
+  "integrity" "sha512-IakmAA0lPATF6iUfHAzYSuZPA6DYLlMj4LTGnT4LeEtmIHjPWsTDgGssPbMJakA47M1vNv5WwiNS3GCtdH2FQw=="
+  "resolved" "https://registry.npmmirror.com/hexo-image-link/-/hexo-image-link-0.0.5.tgz"
+  "version" "0.0.5"
+
 "hexo-log@^2.0.0":
   "integrity" "sha512-U7zdDae74pXcyhQEyNmpJdq3UI6zWKxQ7/zLoMr/d3CBRdIfB5yO8DWqKUnewfibYv0gODyTWUIhxQDWuwloow=="
   "resolved" "https://registry.npmjs.org/hexo-log/-/hexo-log-2.0.0.tgz"
@@ -775,7 +775,7 @@
 
 "hexo-renderer-marked@^5.0.0":
   "integrity" "sha512-lifWMCvefTq3IlH+urQDPFX4gXquFAqDwOQBdqpwcPyhaiVHu0ZweeZ24IeZtCLRYP+zEgsksCPYrGl9hDDJHg=="
-  "resolved" "https://registry.npmjs.org/hexo-renderer-marked/-/hexo-renderer-marked-5.0.0.tgz"
+  "resolved" "https://registry.npmmirror.com/hexo-renderer-marked/-/hexo-renderer-marked-5.0.0.tgz"
   "version" "5.0.0"
   dependencies:
     "dompurify" "^2.3.0"
@@ -1080,6 +1080,11 @@
   "integrity" "sha512-9mDDwqVIma6OZX79ZlDACZl8sBm0TEnkf99zV3iMA4GzkIT/9hiqP5mY0HoT1iNLCrKc/R1HByV+yJfRWVJryQ=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
   "version" "3.10.1"
+
+"lodash@^4.17.11":
+  "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
+  "resolved" "https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz"
+  "version" "4.17.21"
 
 "lower-case@^2.0.2":
   "integrity" "sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg=="
