@@ -7,7 +7,7 @@ tags:
 这里记录一下 陈硕大佬的网络编程实战课程的学习记录，待更新
 
 ### 网络编程常遇到的问题
-![outline-question](chen-shuo-muduo/outline-questions.png)
+![outline-question](chen-shuo-muduo/image-20200314195122981.png)
 
 test for test
 ![](chen-shuo-muduo/test.png)
