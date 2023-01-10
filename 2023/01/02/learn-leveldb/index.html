@@ -19,23 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zll600.github.io","root":"/zll600-blog/","images":"/zll600-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/zll600-blog/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="zll600-blog">
-<meta property="og:url" content="https://zll600.github.io/zll600-blog/index.html">
+    <meta name="description" content="leveldb在实现上使用了 LSM-Tree 来存储数据  manual impl  LSM-Tree 的主要优势是将磁盘的随机写入转化为了顺序写入,从而提高了写入速度 这里就记录一下我个人对于源码的一些理解和学习 LevelDB 支持两种写入方式, Put 和 Delete 这里先分析一下 Put 的整个流程 在写入的时候,首先会将用户提供的 WriteBatch 封装为一个 DBImpl::">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learn-leveldb">
+<meta property="og:url" content="https://zll600.github.io/zll600-blog/2023/01/02/learn-leveldb/index.html">
 <meta property="og:site_name" content="zll600-blog">
+<meta property="og:description" content="leveldb在实现上使用了 LSM-Tree 来存储数据  manual impl  LSM-Tree 的主要优势是将磁盘的随机写入转化为了顺序写入,从而提高了写入速度 这里就记录一下我个人对于源码的一些理解和学习 LevelDB 支持两种写入方式, Put 和 Delete 这里先分析一下 Put 的整个流程 在写入的时候,首先会将用户提供的 WriteBatch 封装为一个 DBImpl::">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-02T12:14:04.000Z">
+<meta property="article:modified_time" content="2023-01-10T10:39:06.257Z">
 <meta property="article:author" content="zll600">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://zll600.github.io/zll600-blog/">
+<link rel="canonical" href="https://zll600.github.io/zll600-blog/2023/01/02/learn-leveldb/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zll600.github.io/zll600-blog/2023/01/02/learn-leveldb/","path":"2023/01/02/learn-leveldb/","title":"learn-leveldb"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>zll600-blog</title>
+<title>learn-leveldb | zll600-blog</title>
   
 
 
@@ -67,7 +71,7 @@
 
     <a href="/zll600-blog/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">zll600-blog</h1>
+      <p class="site-title">zll600-blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Record my thinking</p>
@@ -132,16 +136,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://zll600.github.io/zll600-blog/2023/01/02/learn-leveldb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -155,13 +160,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | zll600-blog">
+      <meta itemprop="name" content="learn-leveldb | zll600-blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/zll600-blog/2023/01/02/learn-leveldb/" class="post-title-link" itemprop="url">learn-leveldb</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          learn-leveldb
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -191,7 +196,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://github.com/google/leveldb">leveldb</a>在实现上使用了 LSM-Tree 来存储数据</p>
+        <p><a target="_blank" rel="noopener" href="https://github.com/google/leveldb">leveldb</a>在实现上使用了 LSM-Tree 来存储数据</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/google/leveldb/blob/main/doc/index.md">manual</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/google/leveldb/blob/main/doc/impl.md">impl</a></li>
@@ -223,7 +228,6 @@
 </li>
 </ul>
 
-      
     </div>
 
     
@@ -231,195 +235,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zll600-blog/2022/08/14/chen-shuo-muduo/" rel="prev" title="chen-shuo-muduo">
+                  <i class="fa fa-chevron-left"></i> chen-shuo-muduo
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://zll600.github.io/zll600-blog/2022/08/14/chen-shuo-muduo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/zll600-blog/images/avatar.gif">
-      <meta itemprop="name" content="zll600">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zll600-blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | zll600-blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/zll600-blog/2022/08/14/chen-shuo-muduo/" class="post-title-link" itemprop="url">chen-shuo-muduo</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-08-14 12:42:21" itemprop="dateCreated datePublished" datetime="2022-08-14T12:42:21+00:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-01-10 10:39:06" itemprop="dateModified" datetime="2023-01-10T10:39:06+00:00">2023-01-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>这里记录一下 陈硕大佬的网络编程实战课程的学习记录，待更新</p>
-<h3 id="网络编程常遇到的问题"><a href="#网络编程常遇到的问题" class="headerlink" title="网络编程常遇到的问题"></a>网络编程常遇到的问题</h3><img src="/zll600-blog/2022/08/14/chen-shuo-muduo/image-20200314195122981.png" class title="outline-question">
-
-<p>test for test</p>
-<img src="/zll600-blog/2022/08/14/chen-shuo-muduo/test.png" class>
-
-
-<p>just for test</p>
-<img src="/zll600-blog/2022/08/14/chen-shuo-muduo/outline-questions.png" class>
-<p>just for test, too</p>
-<img src="/zll600-blog/2022/08/14/chen-shuo-muduo/test.png" class>
-
-<ol>
-<li>经常将网络出路相关的逻辑和业务逻辑混合在一起，</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://zll600.github.io/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/zll600-blog/images/avatar.gif">
-      <meta itemprop="name" content="zll600">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zll600-blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | zll600-blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/zll600-blog/2022/06/27/Upgrade-Debian10-to-Debian11/" class="post-title-link" itemprop="url">Upgrade Debian10 to Debian11</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-27 22:14:04" itemprop="dateCreated datePublished" datetime="2022-06-27T22:14:04+00:00">2022-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-01-10 10:39:06" itemprop="dateModified" datetime="2023-01-10T10:39:06+00:00">2023-01-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="简单记录一下从-debian-10-升级到-debian-11-的过程"><a href="#简单记录一下从-debian-10-升级到-debian-11-的过程" class="headerlink" title="简单记录一下从 debian 10 升级到 debian 11 的过程"></a>简单记录一下从 <code>debian 10</code> 升级到 <code>debian 11</code> 的过程</h2><blockquote>
-<p>以下操作均是切换到 root 身份下进行的</p>
-</blockquote>
-<h3 id="1-更新现有软件"><a href="#1-更新现有软件" class="headerlink" title="1. 更新现有软件"></a>1. 更新现有软件</h3><ul>
-<li>更新现有软件和安全补丁到最新版本<blockquote>
-<p>apt update &amp;&amp; apt upgrade -y</p>
-</blockquote>
-</li>
-<li>卸载不需要的依赖项<blockquote>
-<p>apt –purge autoremove</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="2-更新-source-list-文件"><a href="#2-更新-source-list-文件" class="headerlink" title="2. 更新 source.list 文件"></a>2. 更新 source.list 文件</h3><p>这里使用清华的镜像源</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-升级到-Debian-11"><a href="#3-升级到-Debian-11" class="headerlink" title="3. 升级到 Debian 11"></a>3. 升级到 Debian 11</h3><blockquote>
-<p>apt update &amp;&amp; apt full-upgrade</p>
-</blockquote>
-<h5 id="可以参考这篇文章"><a href="#可以参考这篇文章" class="headerlink" title="可以参考这篇文章"></a>可以参考这篇<a target="_blank" rel="noopener" href="https://www.zatp.com/post/upgrade-to-debian-11/">文章</a></h5>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
