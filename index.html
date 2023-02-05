@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/zll600-blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/zll600-blog/images/favicon-32x32-next.png">
@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/zll600-blog/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -133,6 +133,101 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://zll600.github.io/zll600-blog/2023/01/23/learn-rosedb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/zll600-blog/images/avatar.gif">
+      <meta itemprop="name" content="zll600">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zll600-blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zll600-blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/zll600-blog/2023/01/23/learn-rosedb/" class="post-title-link" itemprop="url">learn-rosedb</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-23 15:18:50" itemprop="dateCreated datePublished" datetime="2023-01-23T15:18:50+00:00">2023-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-02-05 03:03:08" itemprop="dateModified" datetime="2023-02-05T03:03:08+00:00">2023-02-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://github.com/flower-corp/rosedb">rosedb</a></p>
+<p>这里之分析 string 类型的相关操作</p>
+<h3 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h3><p>这里核心函数就是 <code>RoseDB::Open</code> 这个函数，在调用这个函数的时候，会阻塞调用 <code>initDiscard</code> 初始化 discard 文件，调用<code>loadFromFiles</code> 从磁盘文件中载入数据，接着调用 &#96;loadIndexFromLogFile 从磁盘文件中重建索引，</p>
+<p><code>loadFromFiles</code> 会从设置每种类型的数据对应的的 Log 文件 <code>fidMap</code>，这些文件都是 <code>read only</code> 的，也会记录在所有文件对应的只读文件集合中 <code>archivedLogFile</code>，另外需要注意的一点是约定每种数据类型的 LogFile 的 fid 都是递增的，所以在载入的时候，必须按照升序载入数据</p>
+<p><code>loadIndexFromFile</code> 时，会根据已经存在的 <code>read only</code> 文件集合，在内存中建立索引，这里也使用了并行来进行提速，</p>
+<p>之后会起一个 goroutine 来做 GC,<code>handleLogFileGC</code> ，</p>
+<h3 id="写入流程"><a href="#写入流程" class="headerlink" title="写入流程"></a>写入流程</h3><p>这里的 Set 操作同  Redis:</p>
+<ul>
+<li>如果 key 不存在，会同时设置 key， value，</li>
+<li>如果 key 已经存在，则只会更新 key 对应的 value</li>
+</ul>
+<p>这里会直接对 key 做 assignment，不会 care key 是否已经存在了，</p>
+<p>如果当前 append 的文件的大小已经超出了启动时设定的 <code>Options.LogFileSizeThreshold</code> ，则会将当前使用的 log 文件加入到  <code>archiveLogFiles</code> 中，然后打开一个新的的 log 文件，</p>
+<p>首先会先 append log，然后更新 strindex：</p>
+<p>这里对 str index 加的是读写锁，str index 就是一棵 radix-tree，</p>
+<p>关于 radix-tree 可以参考这里: </p>
+<p>关于 mmap 的资料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/522132580">https://www.zhihu.com/question/522132580</a></li>
+</ul>
+<h3 id="读取流程"><a href="#读取流程" class="headerlink" title="读取流程"></a>读取流程</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -178,7 +273,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-01-10 10:39:06" itemprop="dateModified" datetime="2023-01-10T10:39:06+00:00">2023-01-10</time>
+      <time title="Modified: 2023-02-05 03:03:08" itemprop="dateModified" datetime="2023-02-05T03:03:08+00:00">2023-02-05</time>
     </span>
 
   
@@ -284,7 +379,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-01-10 10:39:06" itemprop="dateModified" datetime="2023-01-10T10:39:06+00:00">2023-01-10</time>
+      <time title="Modified: 2023-02-05 03:03:08" itemprop="dateModified" datetime="2023-02-05T03:03:08+00:00">2023-02-05</time>
     </span>
 
   
@@ -374,7 +469,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-01-10 10:39:06" itemprop="dateModified" datetime="2023-01-10T10:39:06+00:00">2023-01-10</time>
+      <time title="Modified: 2023-02-05 03:03:08" itemprop="dateModified" datetime="2023-02-05T03:03:08+00:00">2023-02-05</time>
     </span>
 
   

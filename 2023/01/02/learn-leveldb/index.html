@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/zll600-blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/zll600-blog/images/favicon-32x32-next.png">
@@ -27,7 +27,7 @@
 <meta property="og:description" content="leveldb在实现上使用了 LSM-Tree 来存储数据  manual impl  LSM-Tree 的主要优势是将磁盘的随机写入转化为了顺序写入,从而提高了写入速度 这里就记录一下我个人对于源码的一些理解和学习 LevelDB 支持两种写入方式, Put 和 Delete 这里先分析一下 Put 的整个流程 在写入的时候,首先会将用户提供的 WriteBatch 封装为一个 DBImpl::">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-02T12:14:04.000Z">
-<meta property="article:modified_time" content="2023-01-10T10:39:06.257Z">
+<meta property="article:modified_time" content="2023-02-05T03:03:08.720Z">
 <meta property="article:author" content="zll600">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/zll600-blog/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-01-10 10:39:06" itemprop="dateModified" datetime="2023-01-10T10:39:06+00:00">2023-01-10</time>
+      <time title="Modified: 2023-02-05 03:03:08" itemprop="dateModified" datetime="2023-02-05T03:03:08+00:00">2023-02-05</time>
     </span>
 
   
@@ -245,6 +245,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/zll600-blog/2023/01/23/learn-rosedb/" rel="next" title="learn-rosedb">
+                  learn-rosedb <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
