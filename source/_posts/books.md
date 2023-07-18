@@ -34,7 +34,7 @@ tags:
 
 ### Java
 
-- 《Java 核心卷》
+- 《Java 核心卷》(JDK11)
 
 ### Go
 
