@@ -165,6 +165,7 @@ tags:
 - 罪与罚: https://book.douban.com/subject/1858568/
 - 生命不可承受之轻：https://book.douban.com/subject/1433377/
 - 异乡人：https://book.douban.com/subject/26276775/
+- https://book.douban.com/subject/27194526/
 
 ### 理财
 - 穷爸爸，富爸爸： https://book.douban.com/subject/1033778/
