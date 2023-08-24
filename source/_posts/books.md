@@ -147,9 +147,11 @@ tags:
 ### 前端
 - 《你所不知道的 javascript》
 
-### 生活
+### 心理学
 - 《思考，快与慢》
 - 《即兴的智慧》
 - 《了不起的我》
+
+### 小说
 - 美麗新世界: https://book.douban.com/subject/27002046/
-- 
+- 罪与罚: https://book.douban.com/subject/1858568/
