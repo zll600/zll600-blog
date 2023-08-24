@@ -153,6 +153,7 @@ tags:
 - 《了不起的我》
 - 《学会提问》
 - 《社会心理学》
+- 影响力： https://book.douban.com/subject/35637771/
 
 ### 小说
 - 美麗新世界: https://book.douban.com/subject/27002046/
