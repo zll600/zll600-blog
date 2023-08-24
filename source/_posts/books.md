@@ -147,6 +147,10 @@ tags:
 ### 前端
 - 《你所不知道的 javascript》
 
+### 项目管理
+- 最后期限：https://book.douban.com/subject/1231972/
+
+
 ### 心理学
 - 《思考，快与慢》
 - 《即兴的智慧》
