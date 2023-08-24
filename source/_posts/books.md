@@ -158,6 +158,7 @@ tags:
 - 原生家庭：https://book.douban.com/subject/30199434/
 - 谈人的理性：https://book.douban.com/subject/6101304/
 - 存在主义：https://book.douban.com/subject/27170538/
+- 被讨厌的勇气：https://book.douban.com/subject/36150914/
 
 ### 小说
 - 美麗新世界: https://book.douban.com/subject/27002046/
