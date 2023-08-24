@@ -162,6 +162,7 @@ tags:
 ### 小说
 - 美麗新世界: https://book.douban.com/subject/27002046/
 - 罪与罚: https://book.douban.com/subject/1858568/
+- 生命不可承受之轻：https://book.douban.com/subject/1433377/
 
 ### 理财
 - 穷爸爸，富爸爸： https://book.douban.com/subject/1033778/
