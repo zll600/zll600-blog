@@ -157,6 +157,7 @@ tags:
 - 怪诞行为学：https://book.douban.com/subject/27599381/
 - 原生家庭：https://book.douban.com/subject/30199434/
 - 谈人的理性：https://book.douban.com/subject/6101304/
+- 存在主义：https://book.douban.com/subject/27170538/
 
 ### 小说
 - 美麗新世界: https://book.douban.com/subject/27002046/
