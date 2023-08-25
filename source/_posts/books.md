@@ -171,6 +171,8 @@ tags:
 - 异乡人：https://book.douban.com/subject/26276775/
 - https://book.douban.com/subject/27194526/
 - 王小波相关
+- 《目送》
+- 《看见》
 
 ### 理财
 - 穷爸爸，富爸爸： https://book.douban.com/subject/1033778/
