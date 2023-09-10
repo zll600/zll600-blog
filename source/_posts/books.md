@@ -179,3 +179,16 @@ tags:
 ### 理财
 - 穷爸爸，富爸爸： https://book.douban.com/subject/1033778/
 - 小狗钱钱： https://book.douban.com/subject/1033778/
+
+IT
+- https://movie.douban.com/subject/1418357/
+- https://movie.douban.com/subject/1437389/?from=subject-page
+- https://movie.douban.com/subject/3124124/?from=subject-page
+- https://movie.douban.com/subject/5247075/
+- https://movie.douban.com/subject/20644938/
+- https://movie.douban.com/subject/1937190/
+- https://movie.douban.com/subject/20431388/
+- https://movie.douban.com/subject/2993935/?from=subject-page
+- https://movie.douban.com/subject/25785114/
+- https://movie.douban.com/subject/20513939/
+- https://movie.douban.com/subject/5423352/?from=subject-page
