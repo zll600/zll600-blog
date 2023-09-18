@@ -149,6 +149,7 @@ tags:
 
 ### 项目管理
 - 最后期限：https://book.douban.com/subject/1231972/
+- 代码大全
 
 
 ### 心理学
