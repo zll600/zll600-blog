@@ -7,3 +7,7 @@ tags:
 ## 并行编程
 
 cs-149 standford
+
+
+links:
+- https://github.com/microsoft/go-mssqldb/issues/33
