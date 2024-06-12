@@ -780,10 +780,10 @@ hexo-i18n@^1.0.0:
   dependencies:
     sprintf-js "^1.0.3"
 
-hexo-image-link@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.npmmirror.com/hexo-image-link/-/hexo-image-link-0.0.5.tgz"
-  integrity sha512-IakmAA0lPATF6iUfHAzYSuZPA6DYLlMj4LTGnT4LeEtmIHjPWsTDgGssPbMJakA47M1vNv5WwiNS3GCtdH2FQw==
+hexo-image-link@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/hexo-image-link/-/hexo-image-link-0.0.6.tgz#1aec5c01174ae1b42ce6fd2043d266bc2b7f46f2"
+  integrity sha512-/TR3bBwTeu90zWVI6t8Ky33erhZy4dFONWZ/lGWN8qEsGsxvdG/aKYsoLj5ZxvwAWTaS6z6I59lPMdIhDSqw2Q==
 
 hexo-log@^2.0.0:
   version "2.0.0"
