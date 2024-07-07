@@ -2,9 +2,9 @@ name: 构建并部署到 Github Pages
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - 'main'
+  push:
+    branches:
+      - nolebase
 
 
 env:
@@ -63,31 +63,31 @@ jobs:
     name: Ubuntu 构建和推送
     runs-on: ubuntu-latest
     environment:
-      name: 正式 Production - GitHub Pages
-      url: https://nolebase.github.io/nolebase
+      name: Production - GitHub Pages
+      url: https://zll600.github.io/zll600-blog
     steps:
-      - name: 签出代码
+      - name: checkout branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 安装 Node.js 22.x
+      - name: install Node.js 22.x
         uses: actions/setup-node@v3
         with:
           node-version: 22.x
 
-      - name: 安装 pnpm
+      - name: install pnpm
         uses: pnpm/action-setup@v2
         with:
           run_install: false
           version: '9.1.2'
 
-      - name: 获取 pnpm store 目录
+      - name: install pnpm store directory
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - name: 配置 pnpm 缓存
+      - name: setup pnpm cache 
         uses: actions/cache@v4
         with:
           path: ${{ env.STORE_PATH }}
@@ -95,18 +95,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: 安装依赖
+      - name: install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 安装思源黑体
+      - name: install source-han-sans
         run: |
           mkdir -p ~/.local/share/fonts
           cp public/source-han-sans.ttf ~/.local/share/fonts/source-han-sans.ttf
 
-      - name: 构建
+      - name: build
         run: pnpm docs:build
 
-      - name: 推送到 gh-pages 分支
+      - name: deploy to gh-pages branch
         timeout-minutes: 10
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
